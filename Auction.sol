@@ -31,8 +31,8 @@ contract Auction {
                 
         //Part 1 Task 1. Initialize beneficiary with address of smart contract’s owner
         //Hint. In the constructor,"msg.sender" is the address of the owner.
+        // ** Start code here. 1 line approximately. **/
         beneficiary = msg.sender;
-
           //** End code here. **/
         uint[] memory emptyArray;
         items[0] = Item({itemId:0,itemTokens:emptyArray});
@@ -53,8 +53,8 @@ contract Auction {
         //Part 1 Task 3. Initialize the address of the bidder 
         /*Hint. Here the bidders[bidderCount].addr should be initialized with address of the registrant.*/
 
+        // ** Start code here. 1 line approximately. **/
         bidders[bidderCount].addr = msg.sender;
-
         //** End code here. **
         
         bidders[bidderCount].remainingTokens = 5; // only 5 tokens
@@ -79,9 +79,10 @@ contract Auction {
         Hint: "tokenDetails[msg.sender].remainingTokens" gives the details of the number of tokens remaining with the bidder.
         */
         
-        if (tokenDetails[msg.sender].remainingTokens < _count) { revert(); }
-        if (tokenDetails[msg.sender].remainingTokens == 0) { revert(); }
-        if (_itemId > 2) { revert(); }
+        // ** Start code here. 2 lines approximately. **/
+        if (tokenDetails[msg.sender].remainingTokens < _count) revert();
+        else if (tokenDetails[msg.sender].remainingTokens == 0) revert();
+        else if (_itemId > 2) revert();
 
         //** End code here. **
         
@@ -89,7 +90,7 @@ contract Auction {
         Hint. "tokenDetails[msg.sender].remainingTokens" should be decremented by "_count". */
  
         // ** Start code here. 1 line approximately. **
-        uint balance=tokenDetails[msg.sender].remainingTokens - _count; 
+        uint balance= tokenDetails[msg.sender].remainingTokens - _count;
         //** End code here. **
         
         tokenDetails[msg.sender].remainingTokens=balance;
